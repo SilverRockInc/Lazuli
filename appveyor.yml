@@ -14,7 +14,7 @@ before_package:
 - cmd: .\merge.cmd
 - ps: >-
     $version = `
-      IF ($env:APPVEYOR_REPO_BRANCH -eq "master") {"$env:APPVEYOR_BUILD_VERSION"} `
+      IF ($env:APPVEYOR_REPO_BRANCH -eq "master") {"$env:APPVEYOR_BUILD_VERSION-beta"} `
       ELSE { IF ($env:APPVEYOR_REPO_BRANCH -eq "test") {"$env:APPVEYOR_BUILD_VERSION-rc"} `
       ELSE {"$env:APPVEYOR_BUILD_VERSION-alpha"} }
 
