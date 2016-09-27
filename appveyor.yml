@@ -1,3 +1,6 @@
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: uoQjU5NajvkQHrDWWkzYtuKEQ/hn+yg+nYgywdFymttl1AdVmC92hmnaDTlRynpy
 version: 0.0.{build}
 configuration: Release
 assembly_info:
