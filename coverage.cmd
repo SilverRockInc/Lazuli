@@ -3,7 +3,7 @@ nuget install coveralls.net -Version 0.412.0 -OutputDirectory tools
 
 .\tools\OpenCover.4.6.519\tools\OpenCover.Console.exe ^
 	-target:"vstest.console.exe" ^
-	-filter:"+[*]* -[*.*Tests]*" ^
+	-filter:"+[SilverRock.Lazuli*]* -[*.*Tests]*" ^
 	-targetargs:".\tests\SilverRock.Lazuli.UnitTests\bin\Release\SilverRock.Lazuli.UnitTests.dll" ^
 	-register:user
 
