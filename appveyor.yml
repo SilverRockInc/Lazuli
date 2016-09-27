@@ -9,7 +9,9 @@ before_build:
 build:
   publish_nuget: true
   verbosity: minimal
+after_build:
 before_package:
+- cmd: .\merge.cmd
 - ps: >-
     $version = `
       IF ($env:APPVEYOR_REPO_BRANCH -eq "master") {"$env:APPVEYOR_BUILD_VERSION"} `
