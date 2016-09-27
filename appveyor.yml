@@ -15,8 +15,8 @@ before_package:
 - ps: >-
     $version = `
       IF ($env:APPVEYOR_REPO_BRANCH -eq "master") {"$env:APPVEYOR_BUILD_VERSION"} `
-      ELSE IF ($env:APPVEYOR_REPO_BRANCH -eq "test") {"$env:APPVEYOR_BUILD_VERSION-rc"} `
-      ELSE {"$env:APPVEYOR_BUILD_VERSION-alpha"}
+      ELSE { IF ($env:APPVEYOR_REPO_BRANCH -eq "test") {"$env:APPVEYOR_BUILD_VERSION-rc"} `
+      ELSE {"$env:APPVEYOR_BUILD_VERSION-alpha"} }
 
     (Get-Content "$env:APPVEYOR_BUILD_FOLDER\src\SilverRock.Lazuli\SilverRock.Lazuli.nuspec") `
         -replace '<version>[^<]*?</version>', ('<version>{0}</version>' -f $version) |
