@@ -14,9 +14,11 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2016 $author$</copyright>
     <tags></tags>
+    <dependecies>
+    </dependecies>
   </metadata>
   <files>
     <file src="$project$..\..\lazuli.exe" target="tools" />
-    <file src="$project$**\*.*" exclude="**\*.*" />
+    <file src="**\*.*" exclude="**\SilverRock.Lazuli.exe" />
   </files>
 </package>
