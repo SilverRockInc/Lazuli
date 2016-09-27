@@ -20,3 +20,5 @@ after_build:
         -replace '<version>[^<]*?</version>', ('<version>{0}</version>' -f $version) |
       Out-File "$env:APPVEYOR_BUILD_FOLDER\Lazuli.nuspec"
 - cmd: nuget pack
+artifacts:
+- path: '*.nupkg'
