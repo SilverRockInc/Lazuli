@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverRock.Lazuli", "src\Si
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{EA7565F1-417B-48D3-9CA5-10B595DEB4B4}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		Lazuli.nuspec = Lazuli.nuspec
 		merge.cmd = merge.cmd
 	EndProjectSection
 EndProject

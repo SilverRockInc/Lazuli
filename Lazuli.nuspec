@@ -3,7 +3,7 @@
   <metadata>
     <id>SilverRock.Lazuli</id>
     <title>SilverRock.Lazuli</title>
-    <version>$version$</version>
+    <version>0.0.0</version>
     <authors>silverrock</authors>
     <owners>silverrock</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
@@ -11,12 +11,9 @@
     <iconUrl>https://secure.gravatar.com/avatar/8f06f043335031d7a8f997aee366ba23?size=64</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>JSON/YAML-based configuration CLI for Microsoft Azure</description>
-    <releaseNotes></releaseNotes>
     <copyright>Copyright 2016 $author$</copyright>
-    <tags></tags>
   </metadata>
   <files>
-    <file src="$project$..\..\lazuli.exe" target="tools" />
-    <file src="**\SilverRock.Lazuli.exe" exclude="**\SilverRock.Lazuli.exe" />
+    <file src="lazuli.exe" target="tools" />
   </files>
 </package>

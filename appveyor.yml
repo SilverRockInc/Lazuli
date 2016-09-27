@@ -7,10 +7,8 @@ assembly_info:
 before_build:
   - nuget restore
 build:
-  publish_nuget: true
   verbosity: minimal
 after_build:
-before_package:
 - cmd: .\merge.cmd
 - ps: >-
     $version = `
@@ -18,6 +16,7 @@ before_package:
       ELSE { IF ($env:APPVEYOR_REPO_BRANCH -eq "test") {"$env:APPVEYOR_BUILD_VERSION-rc"} `
       ELSE {"$env:APPVEYOR_BUILD_VERSION-alpha"} }
 
-    (Get-Content "$env:APPVEYOR_BUILD_FOLDER\src\SilverRock.Lazuli\SilverRock.Lazuli.nuspec") `
+    (Get-Content "$env:APPVEYOR_BUILD_FOLDER\Lazuli.nuspec") `
         -replace '<version>[^<]*?</version>', ('<version>{0}</version>' -f $version) |
-      Out-File "$env:APPVEYOR_BUILD_FOLDER\src\SilverRock.Lazuli\SilverRock.Lazuli.nuspec"
+      Out-File "$env:APPVEYOR_BUILD_FOLDER\Lazuli.nuspec"
+- cmd: nuget pack
