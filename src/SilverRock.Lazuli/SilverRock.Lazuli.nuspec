@@ -19,6 +19,4 @@
     <file src="$project$..\..\lazuli.exe" target="tools" />
     <file src="$project$**\*.*" exclude="**\*.*" />
   </files>
-  <dependencies>
-  </dependencies>
 </package>
