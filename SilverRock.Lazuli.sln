@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{EA7565F1
 		merge.cmd = merge.cmd
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{47E7115C-FB81-4AEB-9545-9CCBA6C8B778}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverRock.Lazuli.UnitTests", "tests\SilverRock.Lazuli.UnitTests\SilverRock.Lazuli.UnitTests.csproj", "{CAD454FE-BE5B-4A6A-9A7E-BA93986B23CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,8 +26,15 @@ Global
 		{C8F49332-11F6-4ABB-B034-2974C05FFF5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8F49332-11F6-4ABB-B034-2974C05FFF5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8F49332-11F6-4ABB-B034-2974C05FFF5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAD454FE-BE5B-4A6A-9A7E-BA93986B23CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD454FE-BE5B-4A6A-9A7E-BA93986B23CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD454FE-BE5B-4A6A-9A7E-BA93986B23CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD454FE-BE5B-4A6A-9A7E-BA93986B23CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CAD454FE-BE5B-4A6A-9A7E-BA93986B23CC} = {47E7115C-FB81-4AEB-9545-9CCBA6C8B778}
 	EndGlobalSection
 EndGlobal

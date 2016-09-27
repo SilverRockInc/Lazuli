@@ -33,7 +33,9 @@ namespace SilverRock.Lazuli
 
 				try
 				{
-					script = GetScript();
+					using (FileStream stream = new FileStream(_config, FileMode.Open))
+					using (StreamReader reader = new StreamReader(stream))
+						script = GetScript(reader.ReadToEnd());
 				}
 				catch (Exception ex)
 				{
@@ -56,28 +58,23 @@ namespace SilverRock.Lazuli
 			}
 		}
 
-		static Script GetScript()
+		internal static Script GetScript(string text)
 		{
-			using (FileStream stream = new FileStream(_config, FileMode.Open))
-			using (StreamReader reader = new StreamReader(stream))
+			if (!IsJson(text))
+				text = YamlToJson(text);
+
+			try
 			{
-				string text = reader.ReadToEnd();
-
-				if (!IsJson(text))
-					text = YamlToJson(text);
-
-				try
-				{
-					return JsonConvert.DeserializeObject<Script>(text);
-				}
-				catch (Exception ex)
-				{
-					throw new FormatException("Cannot parse JSON as a valid script", ex);
-				}
+				return JsonConvert.DeserializeObject<Script>(text,new JsonSerializerSettings { CheckAdditionalContent = false });
 			}
+			catch (Exception ex)
+			{
+				throw new FormatException("Cannot parse JSON as a valid script", ex);
+			}
+
 		}
 
-		static bool IsJson(string s)
+		internal static bool IsJson(string s)
 		{
 			if (string.IsNullOrWhiteSpace(s))
 				return false;
@@ -93,7 +90,7 @@ namespace SilverRock.Lazuli
 			return false;
 		}
 
-		static string YamlToJson(string s)
+		internal static string YamlToJson(string s)
 		{
 			try
 			{
