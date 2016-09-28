@@ -3,7 +3,7 @@
 [![Nuget package](https://img.shields.io/nuget/vpre/SilverRock.Lazuli.svg?maxAge=300)](https://www.nuget.org/packages/SilverRock.Lazuli/)
 
 # Lazuli
-Lazuli is a JSON/YAML-based command line toole for configuring Microsoft Azure entities.  (Currently, only Service Bus Topics and App Services are supported.)
+Lazuli is a JSON/YAML-based command line tool for configuring Microsoft Azure entities.  (Currently, only Service Bus Topics and App Services are supported.)
 It is named after the semi-precious stone Lapis Lazuli from which the word "Azure" is derived.
 
 ## Design Philosophy
@@ -40,6 +40,7 @@ deployEnvironments:
 3. Run Lazuli: `{path to package}\lazuli.exe -e:prod -c:config.yml`
 
 ## File Structure
+All examples are in YAML, anthough Lazuli also supports JSON configs.
 
 ### Deployment Environments
 The config file contains a list property "`deployEnvironments`" which allows for multiple environments to be defined within a single file.  Each environment
@@ -49,11 +50,64 @@ has a `name` which is passed as the `e|environment` when running Lazuli. Each en
 Each entity (eg. Topic, AppService) has three optional properties: `create`, `update`, and `remove`.
 
 ### Topics
-The creation of a Service Bus Topic assumes the prior existance of a Service Bus Namespace.  Each Topic has a `namespace` property which
+The creation of a Service Bus Topic assumes the prior existance of a Service Bus Namespace.  Each Topic has a required `namespace` property which
 contains the `endpoint`, `accessKeyName`, and `accessKey` for that namespace. The rest of the shcema for Topic objects
-is the same as the `TopicDefinition` class in Microsoft's [SerivceBus package](https://www.nuget.org/packages/WindowsAzure.ServiceBus/).
+is the same as the [`TopicDefinition`](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.topicdescription.aspx) class in Microsoft's [SerivceBus package](https://www.nuget.org/packages/WindowsAzure.ServiceBus/).
+
+Example:
+```YAML
+# Required properties
+namespace:
+  endpoint: sb://some-service-bus.servicebus.windows.net
+  accessKeyName: RootManageSharedAccessKey
+  accessKey: hunter2
+path: my-topic-path
+
+# Optional properties
+authorization:
+- name: default
+  primaryKey: XsEK+cAqjfuMZSN1kDGiNsb7p3
+  accessRights:
+  - Manage
+  - Send
+  - Listen
+autoDeleteOnIdle: 00:30:00
+defaultMessageTimeToLive: 1.00:00:00
+duplicateDetectionHistoryTimeWindow: 1.00:00:00
+enableBatchedOperations: false
+enableExpress: false
+enableFilteringMessagesBeforePublishing: true
+enablePartitioning: true
+maxSizeInMegabytes: 10240
+requiresDuplicateDetection: true
+subscriptions: # Array of subscriptions; see below
+supportOrdering: true
+userMetadata: 
+```
 
 ### Subscriptions
-Topics may contain multiple Subscriptions. In general the shcema for Subscription objects
-is the same as the `SubscriptionDefinition` class in Microsoft's [SerivceBus package](https://www.nuget.org/packages/WindowsAzure.ServiceBus/).
-However, there is also an added `sqlFilter` property which allows for the definition of a `SqlFilter`
+Topics may contain multiple Subscriptions. In general the shcema for Subscription objects is the same as the
+[`SubscriptionDefinition`](https://msdn.microsoft.com/en-us/library/microsoft.servicebus.messaging.subscriptiondescription.aspx)
+class in Microsoft's [SerivceBus package](https://www.nuget.org/packages/WindowsAzure.ServiceBus/).
+However, there is also an added `sqlFilter` property which allows for the definition of a `SqlFilter` constructed from the
+supplied string.
+
+Example:
+```YAML
+# Required properties
+name: my-topic-name
+
+# Optional properties
+autoDeleteOnIdle: 00:30:00
+defaultMessageTimeToLive: 1.00:00:00
+enableBatchedOperations: false
+enableDeadLetteringOnFilterEvaluationExceptions: true
+enableDeadLetteringOnMessageExpiration: true
+forwardDeadLetteredMessagesTo:
+forwardTo:
+lockDuration: 00:01:00
+maxDeliveryCount: 10
+requiresSession: false
+sqlFilter: CustomProp = 'Some value'
+userMetadata:
+```
