@@ -6,4 +6,5 @@ nuget install ILMerge -Version 2.14.1208 -OutputDirectory tools
 	.\src\SilverRock.Lazuli\bin\Release\NDesk.Options.dll ^
 	.\src\SilverRock.Lazuli\bin\Release\Newtonsoft.Json.dll ^
 	.\src\SilverRock.Lazuli\bin\Release\SilverRock.AzureTools.dll ^
+	.\src\SilverRock.Lazuli\bin\Release\YamlDotNet.dll ^
 	/out:lazuli.exe
