@@ -111,3 +111,31 @@ requiresSession: false
 sqlFilter: CustomProp = 'Some value'
 userMetadata:
 ```
+
+### App Services
+Currently, only application settings are supported for App Services.  Application settings
+can be updated for multiple sites by adding multiple `account` entries.  The
+`serviceName` property corresponds to the name of the App Service in Azure. The
+`username` and `password` properties correspond to the deployment credentials for the App.
+
+Example:
+``` YAML
+appServices:
+  update:
+  - accounts:
+    - serviceName: some-auzre-app-service-west
+      username: AzureDiamond
+      password: hunter2
+    - serviceName: some-auzre-app-service-central
+      username: deployaccount
+      password: 123456
+    settings:
+      SomeSetting: Setting value
+      AnotherSetting: Another setting value
+  - accounts:
+    - serviceName: another-app-service
+      username: rmunroe
+      password: correcthorsebatterystaple
+    settings:
+      my-password: Y29ycmVjdGhvcnNlYmF0dGVyeXN0YXBsZQ==
+```
